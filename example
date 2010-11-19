@@ -1,0 +1,23 @@
+function ExampleVO()
+{
+}
+
+function loopResult(l) {
+    for (var i = 0; i < l.length; i ++) {
+        if (l[i] instanceof ExampleVO) {
+            console.log('responded with ExampleVO') ;
+        }
+    }
+}
+
+window.onload = function () {
+    registerClassAlias("mynamespace.ExampleVO", ExampleVO);
+
+    // create service remoting object
+    service = new RemotingProxy(url, 'mynamespace.MyService', amf.ObjectEncoding.AMF3);
+
+    service.addHandler('getData',
+		 loopResult(r),  // success
+		function(e){console.log('error ' + e)}); // failure
+}
+
