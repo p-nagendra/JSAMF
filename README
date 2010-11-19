@@ -1,0 +1,18 @@
+I've changed amf.js to allow encoding of objects. I've also fixed some bugs in the decoding process.
+
+
+At the moment, firefox is the only browser that can encode and decode correctly.
+
+Chrome fails to encode binary strings. bytes over 0xC0 decode to double UTF characters
+  Chrome team is working on blobBulder to correct this. It should be fixed soon
+
+Safari behaves in the same way. A blob builder is needed.
+
+IE also can't encode binary strings. ActiveX controlls that would make this possible are now disabled.
+ IE can't post binary data too. This is why there's a gateway.swf
+
+
+
+Due to the nature of the fall back gateway, I decided to cut my losses and use JSON.
+
+
